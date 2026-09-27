@@ -1,0 +1,58 @@
+@prefix this: <http://purl.org/nanopub/temp/npfdo-spec/> .
+@prefix sub: <http://purl.org/nanopub/temp/npfdo-spec/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix orcid: <https://orcid.org/> .
+
+sub:Head {
+  this: a np:Nanopublication ;
+    np:hasAssertion sub:assertion ;
+    np:hasProvenance sub:provenance ;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  <https://w3id.org/npfdo/spec/core> a bibo:Specification ;
+    rdfs:label "np-FDO core specification"@en ;
+    dcat:version "0.1" ;
+    dct:creator orcid:0000-0001-8888-635X .
+
+  sub:file fdof:materializes <https://w3id.org/npfdo/spec/core> ;
+    dcat:accessURL <https://github.com/easchultes/npfdo-core/blob/b400634b543f2205b6da411886a4cd2a76bc9053/npfdo_core_spec_v0_1_d8.md> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/easchultes/npfdo-core/b400634b543f2205b6da411886a4cd2a76bc9053/npfdo_core_spec_v0_1_d8.md> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:mediaType <http://www.iana.org/assignments/media-types/text/markdown> ;
+    spdx:checksum sub:checksum ;
+    dcat:byteSize "45139"^^xsd:nonNegativeInteger ;
+    dct:issued "2026-09-27"^^xsd:date .
+
+  sub:checksum a spdx:Checksum ;
+    spdx:algorithm spdx:checksumAlgorithm_sha256 ;
+    spdx:checksumValue "fde7fc201133b7eaa340fc90ebb9ed8ff5eb96529f198229759a385cd4a8c140" .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: npx:hasNanopubType npfdo:FDORecord ;
+    npx:introduces <https://w3id.org/npfdo/spec/core> ;
+    dct:conformsTo this: ;
+    dct:created "2026-09-27T18:16:51Z"^^xsd:dateTime ;
+    dct:creator orcid:0000-0001-8888-635X ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:wasCreatedFromTemplate <http://purl.org/np/RAFu2BNmgHrjOTJ8SKRnKaRp-VP8AOOb7xX88ob0DZRsU> ;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>, <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8> .
+}
