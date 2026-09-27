@@ -1,0 +1,61 @@
+@prefix this: <http://purl.org/nanopub/temp/npfdo-pt/> .
+@prefix sub: <http://purl.org/nanopub/temp/npfdo-pt/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix orcid: <https://orcid.org/> .
+
+sub:Head {
+  this: a np:Nanopublication ;
+    np:hasAssertion sub:assertion ;
+    np:hasProvenance sub:provenance ;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  sub:template a nt:PubinfoTemplate ;
+    rdfs:label "np-FDO record (core v0.1)" ;
+    dct:description "Publication-information template of the np-FDO core specification v0.1: marks the nanopublication as an FDO record, binds it to specification version 0.1, and links it to its referent by npx:introduces or npx:describes." ;
+    nt:hasStatement sub:p1, sub:p2, sub:p3, sub:p4 .
+
+  sub:referent a nt:UriPlaceholder ;
+    rdfs:label "IRI of the object" .
+
+  sub:p1 rdf:subject nt:NANOPUB ;
+    rdf:predicate npx:hasNanopubType ;
+    rdf:object <https://w3id.org/npfdo/terms/FDORecord> .
+
+  sub:p2 rdf:subject nt:NANOPUB ;
+    rdf:predicate dct:conformsTo ;
+    rdf:object <https://w3id.org/np/RAYTT7oW0dbPdx3PqIA1m9XBLRGYVqmAhzLY7vLTMG1GI> .
+
+  sub:p3 a nt:OptionalStatement ;
+    rdf:subject nt:NANOPUB ;
+    rdf:predicate npx:introduces ;
+    rdf:object sub:referent .
+
+  sub:p4 a nt:OptionalStatement ;
+    rdf:subject nt:NANOPUB ;
+    rdf:predicate npx:describes ;
+    rdf:object sub:referent .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: npx:embeds sub:template ;
+    dct:created "2026-09-27T20:02:22Z"^^xsd:dateTime ;
+    dct:creator orcid:0000-0001-8888-635X ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RA3KyKGBWWXKZa-Tgq1XW8djl-9veFZDC2lcXIOeNz1WE> ;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>, <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8> .
+}

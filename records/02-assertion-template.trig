@@ -1,0 +1,195 @@
+@prefix this: <http://purl.org/nanopub/temp/npfdo-at/> .
+@prefix sub: <http://purl.org/nanopub/temp/npfdo-at/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fdof: <https://w3id.org/fdof/ontology#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix orcid: <https://orcid.org/> .
+
+sub:Head {
+  this: a np:Nanopublication ;
+    np:hasAssertion sub:assertion ;
+    np:hasProvenance sub:provenance ;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  sub:template a nt:AssertionTemplate ;
+    rdfs:label "Describing a FAIR Digital Object (np-FDO core v0.1)" ;
+    dct:description "Generic assertion template of the np-FDO core specification v0.1: type, label, and optionally materialisations, description, creator and qualified references. Use with the np-FDO publication-information template." ;
+    nt:hasTag "np-FDO" ;
+    nt:hasDefaultProvenance <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:hasStatement sub:s1, sub:s2, sub:s3, sub:s4, sub:s5,
+      sub:s5a, sub:s5b, sub:s5c, sub:s5d, sub:s5e, sub:s5f, sub:s5g, sub:s5h, sub:s5i, sub:s5j, sub:s5k,
+      sub:s6 .
+
+  sub:referent a nt:UriPlaceholder ;
+    rdfs:label "IRI of the object" .
+
+  sub:type a nt:RestrictedChoicePlaceholder ;
+    rdfs:label "type of the object" ;
+    nt:possibleValue bibo:Conference, bibo:Specification, skos:ConceptScheme,
+      <https://w3id.org/npfdo/terms/SlideDeck>, <https://w3id.org/npfdo/terms/Skill> .
+
+  sub:label a nt:LanguageTaggedLiteralPlaceholder ;
+    rdfs:label "label" ;
+    nt:hasLanguageTag "en" .
+
+  sub:description a nt:LanguageTaggedLiteralPlaceholder ;
+    rdfs:label "description" ;
+    nt:hasLanguageTag "en" .
+
+  sub:creator a nt:ExternalUriPlaceholder ;
+    rdfs:label "creator" .
+
+  sub:accessURL a nt:ExternalUriPlaceholder ;
+    rdfs:label "access URL" .
+
+  sub:downloadURL a nt:ExternalUriPlaceholder ;
+    rdfs:label "download URL" .
+
+  sub:target a nt:ExternalUriPlaceholder ;
+    rdfs:label "target of the qualified reference" .
+
+  sub:mediaType a nt:ExternalUriPlaceholder ;
+    rdfs:label "media type" ;
+    nt:hasPrefix "http://www.iana.org/assignments/media-types/" ;
+    nt:hasPrefixLabel "IANA media type" .
+
+  sub:file a nt:LocalResource ;
+    rdfs:label "materialisation (file)" .
+
+  sub:checksum a nt:LocalResource ;
+    rdfs:label "checksum" .
+
+  sub:license a nt:RestrictedChoicePlaceholder ;
+    rdfs:label "license" ;
+    nt:hasDefaultValue <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:possibleValue <https://creativecommons.org/licenses/by/4.0/>,
+      <https://creativecommons.org/publicdomain/zero/1.0/>,
+      <https://creativecommons.org/licenses/by-sa/4.0/> .
+
+  sub:algorithm a nt:RestrictedChoicePlaceholder ;
+    rdfs:label "checksum algorithm" ;
+    nt:hasDefaultValue spdx:checksumAlgorithm_sha256 ;
+    nt:possibleValue spdx:checksumAlgorithm_sha256, spdx:checksumAlgorithm_sha512 .
+
+  sub:checksumValue a nt:LiteralPlaceholder ;
+    rdfs:label "checksum value" .
+
+  sub:byteSize a nt:LiteralPlaceholder ;
+    rdfs:label "byte size" ;
+    nt:hasDatatype xsd:nonNegativeInteger .
+
+  sub:issued a nt:LiteralPlaceholder ;
+    rdfs:label "issued date" ;
+    nt:hasDatatype xsd:date .
+
+  sub:relation a nt:RestrictedChoicePlaceholder ;
+    rdfs:label "qualified relation" ;
+    nt:possibleValue dct:isPartOf, bibo:presentedAt, prov:wasDerivedFrom, dct:replaces .
+
+  sub:s1 a nt:RepeatableStatement ;
+    rdf:subject sub:referent ;
+    rdf:predicate rdf:type ;
+    rdf:object sub:type .
+
+  sub:s2 a nt:RepeatableStatement ;
+    rdf:subject sub:referent ;
+    rdf:predicate rdfs:label ;
+    rdf:object sub:label .
+
+  sub:s3 a nt:OptionalStatement ;
+    rdf:subject sub:referent ;
+    rdf:predicate dct:description ;
+    rdf:object sub:description .
+
+  sub:s4 a nt:OptionalStatement, nt:RepeatableStatement ;
+    rdf:subject sub:referent ;
+    rdf:predicate dct:creator ;
+    rdf:object sub:creator .
+
+  sub:s5 a nt:GroupedStatement, nt:OptionalStatement, nt:RepeatableStatement ;
+    nt:hasStatement sub:s5a, sub:s5b, sub:s5c, sub:s5d, sub:s5e, sub:s5f, sub:s5g, sub:s5h, sub:s5i, sub:s5j, sub:s5k .
+
+  sub:s5a rdf:subject sub:file ;
+    rdf:predicate fdof:materializes ;
+    rdf:object sub:referent .
+
+  sub:s5b rdf:subject sub:file ;
+    rdf:predicate dcat:accessURL ;
+    rdf:object sub:accessURL .
+
+  sub:s5c rdf:subject sub:file ;
+    rdf:predicate dct:license ;
+    rdf:object sub:license .
+
+  sub:s5d a nt:OptionalStatement ;
+    rdf:subject sub:file ;
+    rdf:predicate dcat:downloadURL ;
+    rdf:object sub:downloadURL .
+
+  sub:s5e a nt:OptionalStatement ;
+    rdf:subject sub:file ;
+    rdf:predicate dcat:mediaType ;
+    rdf:object sub:mediaType .
+
+  sub:s5f a nt:OptionalStatement ;
+    rdf:subject sub:file ;
+    rdf:predicate dcat:byteSize ;
+    rdf:object sub:byteSize .
+
+  sub:s5g a nt:OptionalStatement ;
+    rdf:subject sub:file ;
+    rdf:predicate dct:issued ;
+    rdf:object sub:issued .
+
+  sub:s5h a nt:OptionalStatement ;
+    rdf:subject sub:file ;
+    rdf:predicate spdx:checksum ;
+    rdf:object sub:checksum .
+
+  sub:s5i a nt:OptionalStatement ;
+    rdf:subject sub:checksum ;
+    rdf:predicate rdf:type ;
+    rdf:object spdx:Checksum .
+
+  sub:s5j a nt:OptionalStatement ;
+    rdf:subject sub:checksum ;
+    rdf:predicate spdx:algorithm ;
+    rdf:object sub:algorithm .
+
+  sub:s5k a nt:OptionalStatement ;
+    rdf:subject sub:checksum ;
+    rdf:predicate spdx:checksumValue ;
+    rdf:object sub:checksumValue .
+
+  sub:s6 a nt:OptionalStatement, nt:RepeatableStatement ;
+    rdf:subject sub:referent ;
+    rdf:predicate sub:relation ;
+    rdf:object sub:target .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: npx:embeds sub:template ;
+    dct:created "2026-09-27T20:02:22Z"^^xsd:dateTime ;
+    dct:creator orcid:0000-0001-8888-635X ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RAWwJ-TzFhUJN5l6cTUIeCIUqqzS8ek-_zumlDczSUipk/template> ;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>, <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8> .
+}

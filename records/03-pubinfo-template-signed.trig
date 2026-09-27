@@ -1,0 +1,68 @@
+@prefix this: <https://w3id.org/np/RAQV2LjRzG8BQ8wXb6Kbyytc8vVAUeS4pFdoOkG2WA_yI> .
+@prefix sub: <https://w3id.org/np/RAQV2LjRzG8BQ8wXb6Kbyytc8vVAUeS4pFdoOkG2WA_yI/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix orcid: <https://orcid.org/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+sub:Head {
+  this: a np:Nanopublication;
+    np:hasAssertion sub:assertion;
+    np:hasProvenance sub:provenance;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  sub:p1 rdf:object npfdo:FDORecord;
+    rdf:predicate npx:hasNanopubType;
+    rdf:subject nt:NANOPUB .
+  
+  sub:p2 rdf:object <https://w3id.org/np/RAYTT7oW0dbPdx3PqIA1m9XBLRGYVqmAhzLY7vLTMG1GI>;
+    rdf:predicate dct:conformsTo;
+    rdf:subject nt:NANOPUB .
+  
+  sub:p3 a nt:OptionalStatement;
+    rdf:object sub:referent;
+    rdf:predicate npx:introduces;
+    rdf:subject nt:NANOPUB .
+  
+  sub:p4 a nt:OptionalStatement;
+    rdf:object sub:referent;
+    rdf:predicate npx:describes;
+    rdf:subject nt:NANOPUB .
+  
+  sub:referent a nt:UriPlaceholder;
+    rdfs:label "IRI of the object" .
+  
+  sub:template a nt:PubinfoTemplate;
+    dct:description "Publication-information template of the np-FDO core specification v0.1: marks the nanopublication as an FDO record, binds it to specification version 0.1, and links it to its referent by npx:introduces or npx:describes.";
+    rdfs:label "np-FDO record (core v0.1)";
+    nt:hasStatement sub:p1, sub:p2, sub:p3, sub:p4 .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: dct:created "2026-09-27T20:02:22Z"^^xsd:dateTime;
+    dct:creator orcid:0000-0001-8888-635X;
+    dct:license <https://creativecommons.org/licenses/by/4.0/>;
+    npx:embeds sub:template;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU>;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>,
+      <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RA3KyKGBWWXKZa-Tgq1XW8djl-9veFZDC2lcXIOeNz1WE> .
+  
+  sub:sig npx:hasAlgorithm "RSA";
+    npx:hasPublicKey "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD3w/IUb755GIzp3ueODYkgELhyq4Clygb5Kspge50xo+n8uC/IvXwi+ukRjEpdfX/JZ09yKUCJ2AMMr/QchrsP1Xhg9Q3fEZ4E12XqFd5jX00Qs0K5XZwjBaV8NdDTJW9I4gpcyh0cry7hSBAWHkXEkqbK+lQvR4UFAKejFq6u/wIDAQAB";
+    npx:hasSignature "YMAk2sihm5LPwpWyVA1qaVQ+zTkBzjG2R63aeqIbmSOyCHR13xVx16glfCjKucetYsKQauA8jxSJpSuLaae1RuxoQNaliaUnPvIwbgEADP+zIqVcFgSVFLD/dUhvu2Fz6YfNiOv8iA7dpMDkMhOaq23Y11Zk+fPhQilU+PhVIYw=";
+    npx:hasSignatureTarget this:;
+    npx:signedBy orcid:0000-0001-8888-635X .
+}
