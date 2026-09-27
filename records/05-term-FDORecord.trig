@@ -1,0 +1,47 @@
+@prefix this: <http://purl.org/nanopub/temp/npfdo-t1/> .
+@prefix sub: <http://purl.org/nanopub/temp/npfdo-t1/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix orcid: <https://orcid.org/> .
+
+sub:Head {
+  this: a np:Nanopublication ;
+    np:hasAssertion sub:assertion ;
+    np:hasProvenance sub:provenance ;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  npfdo:FDORecord a owl:Class ;
+    rdfs:label "FDO record"@en ;
+    skos:definition "A nanopublication that is the metadata record of one FAIR Digital Object under the np-FDO core specification: it types, labels and attributes exactly one referent, states the conditions of use of any materialisation, declares the specification version it conforms to, and is marked as such in its publication information."@en ;
+    skos:scopeNote "A property of the record, not of the referent. Excludes nanopublications that mention or describe an FDO without conforming to the core, and excludes the templates that generate records. Used as the object of npx:hasNanopubType on the nanopublication."@en ;
+    skos:example "The np-FDO core specification record."@en ;
+    skos:altLabel "np-FDO record"@en ;
+    rdfs:seeAlso np:Nanopublication, npx:ExampleNanopub ;
+    rdfs:isDefinedBy <https://w3id.org/npfdo/terms/> .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: npx:hasNanopubType npfdo:FDORecord ;
+    npx:introduces <https://w3id.org/npfdo/terms/FDORecord> ;
+    dct:conformsTo <https://w3id.org/np/RAYTT7oW0dbPdx3PqIA1m9XBLRGYVqmAhzLY7vLTMG1GI> ;
+    dct:created "2026-09-27T20:31:50Z"^^xsd:dateTime ;
+    dct:creator orcid:0000-0001-8888-635X ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RA5OrG1-PCAa3Z4kTLKTxq8lhgNAsopAtQM5h0-xj3MSA/template> ;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RAQV2LjRzG8BQ8wXb6Kbyytc8vVAUeS4pFdoOkG2WA_yI/template>, <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>, <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8> .
+}

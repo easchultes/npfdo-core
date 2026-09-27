@@ -1,0 +1,49 @@
+@prefix this: <https://w3id.org/np/RAE8Y_jz4pP3qZrKg1_zdkD-KvuVraVyfgpTrmaCgnIFQ> .
+@prefix sub: <https://w3id.org/np/RAE8Y_jz4pP3qZrKg1_zdkD-KvuVraVyfgpTrmaCgnIFQ/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix orcid: <https://orcid.org/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+sub:Head {
+  this: a np:Nanopublication;
+    np:hasAssertion sub:assertion;
+    np:hasProvenance sub:provenance;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  sub:conference a bibo:Conference;
+    dct:description "Example record of the np-FDO core specification v0.1. The conference is fictitious; the record exists to test the templates and is excluded from listings."@en;
+    rdfs:label "Example: fictitious conference on FAIR Digital Objects"@en .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: dct:conformsTo <https://w3id.org/np/RAYTT7oW0dbPdx3PqIA1m9XBLRGYVqmAhzLY7vLTMG1GI>;
+    dct:created "2026-09-27T20:31:50Z"^^xsd:dateTime;
+    dct:creator orcid:0000-0001-8888-635X;
+    dct:license <https://creativecommons.org/licenses/by/4.0/>;
+    npx:hasNanopubType npx:ExampleNanopub, npfdo:FDORecord;
+    npx:introduces sub:conference;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU>;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>,
+      <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>,
+      <https://w3id.org/np/RAQV2LjRzG8BQ8wXb6Kbyytc8vVAUeS4pFdoOkG2WA_yI/template>;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RA5OrG1-PCAa3Z4kTLKTxq8lhgNAsopAtQM5h0-xj3MSA/template> .
+  
+  sub:sig npx:hasAlgorithm "RSA";
+    npx:hasPublicKey "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD3w/IUb755GIzp3ueODYkgELhyq4Clygb5Kspge50xo+n8uC/IvXwi+ukRjEpdfX/JZ09yKUCJ2AMMr/QchrsP1Xhg9Q3fEZ4E12XqFd5jX00Qs0K5XZwjBaV8NdDTJW9I4gpcyh0cry7hSBAWHkXEkqbK+lQvR4UFAKejFq6u/wIDAQAB";
+    npx:hasSignature "zcCdgGQiO6W6Lo/ZWQexj5g/MzjV8csrGTSyfjtDiNVwQiSnlfTTPlPP2smGvVRk/M75dU9Cv/dt4POCEzZypyszAzUN7zApbkZ+tMLnkU4yJjSE4tU9Ktf7Z/C562AMv8sBgbexqPrBGjweCSEHgJYptF/I9mMjwWXQbESEgYs=";
+    npx:hasSignatureTarget this:;
+    npx:signedBy orcid:0000-0001-8888-635X .
+}

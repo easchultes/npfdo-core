@@ -1,0 +1,41 @@
+@prefix this: <http://purl.org/nanopub/temp/npfdo-ex/> .
+@prefix sub: <http://purl.org/nanopub/temp/npfdo-ex/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix npx: <http://purl.org/nanopub/x/> .
+@prefix nt: <https://w3id.org/np/o/ntemplate/> .
+@prefix npfdo: <https://w3id.org/npfdo/terms/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix orcid: <https://orcid.org/> .
+
+sub:Head {
+  this: a np:Nanopublication ;
+    np:hasAssertion sub:assertion ;
+    np:hasProvenance sub:provenance ;
+    np:hasPublicationInfo sub:pubinfo .
+}
+
+sub:assertion {
+  sub:conference a bibo:Conference ;
+    rdfs:label "Example: fictitious conference on FAIR Digital Objects"@en ;
+    dct:description "Example record of the np-FDO core specification v0.1. The conference is fictitious; the record exists to test the templates and is excluded from listings."@en .
+}
+
+sub:provenance {
+  sub:assertion prov:wasAttributedTo orcid:0000-0001-8888-635X .
+}
+
+sub:pubinfo {
+  this: npx:hasNanopubType npfdo:FDORecord, npx:ExampleNanopub ;
+    npx:introduces sub:conference ;
+    dct:conformsTo <https://w3id.org/np/RAYTT7oW0dbPdx3PqIA1m9XBLRGYVqmAhzLY7vLTMG1GI> ;
+    dct:created "2026-09-27T20:31:50Z"^^xsd:dateTime ;
+    dct:creator orcid:0000-0001-8888-635X ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    nt:wasCreatedFromTemplate <https://w3id.org/np/RA5OrG1-PCAa3Z4kTLKTxq8lhgNAsopAtQM5h0-xj3MSA/template> ;
+    nt:wasCreatedFromProvenanceTemplate <https://w3id.org/np/RA7lSq6MuK_TIC6JMSHvLtee3lpLoZDOqLJCLXevnrPoU> ;
+    nt:wasCreatedFromPubinfoTemplate <https://w3id.org/np/RAQV2LjRzG8BQ8wXb6Kbyytc8vVAUeS4pFdoOkG2WA_yI/template>, <https://w3id.org/np/RA-N4_kFxcruvBTlo1yJv29E4SLOXsx5KO_th69PprMrA>, <https://w3id.org/np/RALmzqHlrRfeTD8ESZdKFyDNYY6eFuyQ8GAe_4N5eVytc>, <https://w3id.org/np/RACJ58Gvyn91LqCKIO9zu1eijDQIeEff28iyDrJgjSJF8> .
+}
